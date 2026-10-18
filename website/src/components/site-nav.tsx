@@ -39,7 +39,15 @@ export function SiteNav() {
             </span>
             <span className="sr-only">reverse-api-engineer</span>
           </Link>
-          <nav className="flex items-center gap-1 md:gap-6">
+          <nav className="flex items-center gap-1 md:gap-4">
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-white bg-fd-primary rounded-xl hover:opacity-90 transition-opacity shadow-sm"
+              aria-label="Studio"
+            >
+              <span>Studio</span>
+              <span className="text-[10px] bg-white/20 px-1.5 py-0.2 rounded font-mono">Math & Dev</span>
+            </Link>
             <Link
               href="/docs"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-ink-soft hover:text-ink transition-colors"
