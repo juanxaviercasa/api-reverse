@@ -7,10 +7,10 @@
 - Include a `Main` method with example usage
 
 **Authentication & credentials:**
-- Hardcode all cookies, tokens, session IDs, and auth headers found in the traffic directly in the program
-- The user should be able to run the program immediately with zero configuration — no env vars, no config files, no manual setup beyond what's generated
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
+- Document any required authentication setup; public endpoints should work without credentials.
 - If the API uses cookies, construct the `HttpClient` with an `HttpClientHandler` that has a `CookieContainer` set, so cookies persist across requests
-- If the API uses Bearer tokens or API keys, hardcode them in the request headers (e.g. via `DefaultRequestHeaders`)
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
 - Handle auth refresh so the program doesn't go stale: if you see a token refresh endpoint, OAuth refresh flow, or login endpoint in the traffic, implement automatic re-authentication when a request returns 401/403. If cookies have expiry, re-fetch them before they expire
 
 **Testing:**

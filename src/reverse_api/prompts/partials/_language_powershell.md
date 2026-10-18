@@ -14,10 +14,10 @@
 - Create a separate exported function for each distinct API endpoint
 
 **Authentication & credentials:**
-- Hardcode all cookies, tokens, session IDs, and auth headers found in the traffic directly in the module
-- The user should be able to run the example immediately with zero configuration — no env vars, no config files, no manual setup
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
+- Document any required authentication setup; public endpoints should work without credentials.
 - If the API uses cookies, populate a `WebRequestSession` with them and reuse it across calls
-- If the API uses Bearer tokens or API keys, hardcode them in the request headers
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
 - Handle auth refresh so the module doesn't go stale: if you see a token refresh endpoint, OAuth refresh flow, or login endpoint in the traffic, implement automatic re-authentication when a request returns 401/403. If cookies have expiry, re-fetch them before they expire
 
 **Testing:**

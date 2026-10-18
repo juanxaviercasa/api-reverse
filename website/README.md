@@ -12,7 +12,11 @@ pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3001. The homepage and `/studio/` expose the knowledge extraction workflow; the original documentation remains under `/docs/`.
+
+Build and development use webpack after a reproducible Turbopack CSS subprocess failure in the Windows development environment. Google Fonts are fetched during build, so the initial build requires network access.
+
+See [the extraction guide](../examples/knowledge/README.md) for GitHub configuration, local JSON/HAR export, data contracts and remaining limitations.
 
 ## Project layout
 

@@ -1,128 +1,71 @@
-name: Reverse API Engine Backend
+name: Knowledge Extraction
+run-name: knowledge-${{ inputs.run_id }}
 
 on:
   workflow_dispatch:
     inputs:
       url:
-        description: 'URL del sitio web a convertir en API'
+        description: 'URL de la fuente'
         required: true
         type: string
       prompt:
-        description: 'Objetivo / Datos a extraer (ej. Catálogo de problemas matemáticos, series temporales)'
+        description: 'Objetivo y alcance de extracción'
         required: true
         type: string
       language:
-        description: 'Lenguaje de salida'
-        required: false
-        default: 'python'
+        description: 'Lenguaje del cliente'
         type: choice
-        options:
-          - python
-          - typescript
-          - javascript
-          - go
-          - csharp
+        default: python
+        options: [python, typescript, javascript, go, java, csharp, php, ruby, c, powershell]
+      profile:
+        description: 'Perfil de conocimiento'
+        type: choice
+        default: general
+        options: [mathematics, science, development, design, marketing, general]
       run_id:
-        description: 'ID de seguimiento de la ejecución'
-        required: false
-        default: ''
+        description: 'Identificador único: letras, números, guiones; máximo 64 caracteres'
+        required: true
         type: string
 
 permissions:
-  contents: write
-  actions: read
+  contents: read
+
+concurrency:
+  group: knowledge-${{ inputs.run_id }}
+  cancel-in-progress: false
 
 jobs:
-  reverse-engineer:
-    name: Run Reverse API Engineer
+  extract:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4
         with:
-          python-version: '3.12'
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+          python-version: '3.13'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
-
-      - name: Install uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
-      - name: Install reverse-api-engineer & Playwright
+      - name: Install locked checkout and browser
         run: |
-          export PATH="$HOME/.local/bin:$PATH"
-          uv tool install "reverse-api-engineer[manual]"
-          playwright install --with-deps chromium
-
-      - name: Prepare execution environment
-        id: prep
-        run: |
-          RUN_ID="${{ inputs.run_id }}"
-          if [ -z "$RUN_ID" ]; then
-            RUN_ID="run_$(date +%s)"
-          fi
-          echo "RUN_ID=$RUN_ID" >> "$GITHUB_OUTPUT"
-          mkdir -p "generated/$RUN_ID"
-
-      - name: Execute Reverse API Engineer
-        id: run_engine
+          uv sync --locked --extra manual
+          uv run --no-sync playwright install --with-deps chromium
+      - name: Capture and export observed JSON
         env:
+          INPUT_URL: ${{ inputs.url }}
+          INPUT_PROMPT: ${{ inputs.prompt }}
+          INPUT_LANGUAGE: ${{ inputs.language }}
+          INPUT_PROFILE: ${{ inputs.profile }}
+          INPUT_RUN_ID: ${{ inputs.run_id }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          RAE_OUTPUT_DIR: "generated/${{ steps.prep.outputs.RUN_ID }}"
-          RAE_DEBUG: "1"
-        run: |
-          export PATH="$HOME/.local/bin:$PATH"
-          RUN_ID="${{ steps.prep.outputs.RUN_ID }}"
-          
-          echo "Starting reverse engineering for ${{ inputs.url }}"
-          
-          # Run reverse-api-engineer in agent mode
-          reverse-api-engineer agent \
-            --url "${{ inputs.url }}" \
-            --prompt "${{ inputs.prompt }}" \
-            --no-interactive \
-            --json > "generated/$RUN_ID/result.json" || true
-
-          cat "generated/$RUN_ID/result.json"
-
-      - name: Upload Generated Client as Artifact
-        uses: actions/upload-artifact@v4
+        run: uv run --no-sync python -m reverse_api.knowledge_runner
+      - name: Upload dataset and quality report
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: api-client-${{ steps.prep.outputs.RUN_ID }}
-          path: generated/${{ steps.prep.outputs.RUN_ID }}/*
-          retention-days: 14
-
-      - name: Commit and push generated client
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add generated/
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "feat(api): generated client for ${{ inputs.url }} [skip ci]"
-            git push origin HEAD || echo "Push failed or branch protected"
-          fi
-
-      - name: Add Job Summary
-        run: |
-          RUN_ID="${{ steps.prep.outputs.RUN_ID }}"
-          printf '### Reverse API Engineer Result\n\n' >> "$GITHUB_STEP_SUMMARY"
-          printf '**Target URL:** %s\n' "${{ inputs.url }}" >> "$GITHUB_STEP_SUMMARY"
-          printf '**Prompt:** %s\n' "${{ inputs.prompt }}" >> "$GITHUB_STEP_SUMMARY"
-          printf '**Language:** %s\n\n' "${{ inputs.language }}" >> "$GITHUB_STEP_SUMMARY"
-          if [ -f "generated/$RUN_ID/result.json" ]; then
-            printf '```json\n' >> "$GITHUB_STEP_SUMMARY"
-            cat "generated/$RUN_ID/result.json" >> "$GITHUB_STEP_SUMMARY"
-            printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
-          fi
+          name: knowledge-${{ github.run_id }}
+          path: generated/${{ inputs.run_id }}/
+          if-no-files-found: error
+          retention-days: 7

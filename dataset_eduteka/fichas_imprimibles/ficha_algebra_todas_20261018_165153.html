@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica Dirigida de Álgebra - Admisión UNI y San Marcos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\[', right: '\]', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\(', right: '\)', display: false}
+            ]
+        });"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm 15mm 15mm 15mm;
+        }
+        body {
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            color: #111;
+            line-height: 1.4;
+            font-size: 13px;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            border-bottom: 2px solid #003366;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 19px;
+            margin: 0 0 4px 0;
+            color: #003366;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            font-size: 12px;
+            color: #444;
+            margin-top: 6px;
+        }
+        .columns {
+            column-count: 2;
+            column-gap: 22px;
+            column-rule: 1px solid #ddd;
+        }
+        .question-item {
+            break-inside: avoid;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        .q-number {
+            font-weight: bold;
+            color: #003366;
+            margin-right: 4px;
+        }
+        .q-badge {
+            display: inline-block;
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: 3px;
+            background: #eef3f8;
+            color: #003366;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+        .q-statement {
+            margin: 4px 0 8px 0;
+        }
+        .q-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 12px;
+            font-size: 12px;
+            margin-left: 6px;
+        }
+        .opt-item strong {
+            color: #003366;
+            margin-right: 4px;
+        }
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+        .answer-key-section {
+            margin-top: 30px;
+            border: 2px solid #003366;
+            border-radius: 6px;
+            padding: 14px;
+            background: #fafcff;
+        }
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .key-cell {
+            border: 1px solid #ccd8e6;
+            padding: 4px;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .key-cell b {
+            display: block;
+            color: #003366;
+        }
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Práctica Dirigida de Álgebra - Admisión UNI y San Marcos</h1>
+        <div class="meta-grid">
+            <div><strong>Alumno(a):</strong> ________________________________________________</div>
+            <div><strong>Fecha:</strong> 18/10/2026</div>
+            <div><strong>Nivel:</strong> Mixto</div>
+        </div>
+        <div style="font-size: 11px; color: #666; margin-top: 4px;">
+            <strong>Materia:</strong> Algebra | <strong>Fuente:</strong> Banco Oficial de Exámenes de Admisión (Múltiples Universidades)
+        </div>
+    </div>
+
+    <div class="columns">
+        
+        <div class="question-item">
+            <div>
+                <span class="q-number">1.</span>
+                <span class="q-badge">UNAMBA • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Si: \[\sqrt{a + x} + \sqrt{a - x} = 2x\]. </p><p>Calcular: \[\sqrt{a + x} - \sqrt{a - x}\]</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>2</p></div><div class="opt-item"><strong>B)</strong> <p>5</p></div><div class="opt-item"><strong>C)</strong> <p>3</p></div><div class="opt-item"><strong>D)</strong> <p>1</p></div><div class="opt-item"><strong>E)</strong> <p>4</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">2.</span>
+                <span class="q-badge">UNAP • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Si: \[x^{{x}^3} = 2^{\sqrt{2}}\]; \[(5y)^y = 5^{5^5}\]; calcule: \[x^2 + \sqrt[4]{y}\]</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>3</p></div><div class="opt-item"><strong>B)</strong> <p>5</p></div><div class="opt-item"><strong>C)</strong> <p>9</p></div><div class="opt-item"><strong>D)</strong> <p>7</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">3.</span>
+                <span class="q-badge">UNSM • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Hallar:\[ j &gt; 0\] para que las raíces de la ecuación: \[x^2 + jx + 8 = j\] sean iguales.</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>-8</p></div><div class="opt-item"><strong>B)</strong> <p>-4</p></div><div class="opt-item"><strong>C)</strong> <p>4</p></div><div class="opt-item"><strong>D)</strong> <p>8</p></div><div class="opt-item"><strong>E)</strong> <p>2</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">4.</span>
+                <span class="q-badge">UNI • Avanzado</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Sea la gráfica de la parábola:</p><p><img src="https://eduteka.pe/images/questions/img_algebra_1ec21057.png"/></p><p>Determine el valor de verdad de las siguientes proposiciones:</p><p>I. \[b^2 + 4ac &gt; 0\]</p><p>II. \[ac &lt; 0\]</p><p>III. \[\frac{c}{a} &gt; 0\]</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>VVV</p></div><div class="opt-item"><strong>B)</strong> <p>VVF</p></div><div class="opt-item"><strong>C)</strong> <p>VFF</p></div><div class="opt-item"><strong>D)</strong> <p>VFV</p></div><div class="opt-item"><strong>E)</strong> <p>FFF</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">5.</span>
+                <span class="q-badge">UNSA • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Si \[64^x + 64^{-x} = 1022\], entonces \[8^x + 8^{-x}\] es:</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>30</p></div><div class="opt-item"><strong>B)</strong> <p>128</p></div><div class="opt-item"><strong>C)</strong> <p>32</p></div><div class="opt-item"><strong>D)</strong> <p>16</p></div><div class="opt-item"><strong>E)</strong> <p>64</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">6.</span>
+                <span class="q-badge">UNS • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Si \[\frac{1}{x}+\frac{1}{m}=\frac{4}{x+m}\]; hallar el valor de E= \[\frac{x^a-m^a}{x^b+m^b}\]</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>0</p></div><div class="opt-item"><strong>B)</strong> <p>\[\frac{a}{b}\]</p></div><div class="opt-item"><strong>C)</strong> <p>\[\frac{b}{a}m^{a-b}\]</p></div><div class="opt-item"><strong>D)</strong> <p>\[\frac{a}{b}m^{a-b}\]</p></div><div class="opt-item"><strong>E)</strong> <p>\[\frac{b}{a}\]</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">7.</span>
+                <span class="q-badge">UNAP • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content">Si: \[\frac{ab}{a^2+b^2} = \frac{\sqrt{5}}{5}\]; qué valor se obtiene para: \[E = \left( \frac{a}{b} \right)^8 + \left( \frac{b}{a} \right)^8\]</div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p class="fs-4">23 </p></div><div class="opt-item"><strong>B)</strong> <p class="fs-4">47 </p></div><div class="opt-item"><strong>C)</strong> <p class="fs-4">25 </p></div><div class="opt-item"><strong>D)</strong> <p class="fs-4">39 </p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">8.</span>
+                <span class="q-badge">UNSM • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Si se cumple que \[ 3^a = 2 \]. Hallar el valor de: \[ J = 9^a - 3^{a+1} \]</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>−3</p></div><div class="opt-item"><strong>B)</strong> <p>−2</p></div><div class="opt-item"><strong>C)</strong> <p>−1</p></div><div class="opt-item"><strong>D)</strong> <p>0</p></div><div class="opt-item"><strong>E)</strong> <p>1</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">9.</span>
+                <span class="q-badge">UNAP • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Resolver la inecuación: \[\sqrt[3]{x^3-7} &lt; x-1\]</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>\[&lt;1; 2&gt;\]</p></div><div class="opt-item"><strong>B)</strong> <p>\[&lt;0; 3&gt;\]</p></div><div class="opt-item"><strong>C)</strong> <p>\[&lt;-2; 2&gt;\]</p></div><div class="opt-item"><strong>D)</strong> <p>\[&lt;-1; 2&gt;\]</p></div>
+            </div>
+        </div>
+        
+
+        <div class="question-item">
+            <div>
+                <span class="q-number">10.</span>
+                <span class="q-badge">UNSCH • Intermedio</span>
+            </div>
+            <div class="q-statement"><div class="py-0 question-content"><p>Ángela participa en una de las comparsas carnestolendas. Al comprar sus prendas se percata que el costo de tres blusas y cinco fustanes es de S/ 470; y el costo de cinco blusas y tres fustanes es de S/ 410. Si ella decide comprar dos de cada prenda, ¿cuánto pagó?</p></div></div>
+            <div class="q-options">
+                <div class="opt-item"><strong>A)</strong> <p>S/ 180</p></div><div class="opt-item"><strong>B)</strong> <p>S/ 220</p></div><div class="opt-item"><strong>C)</strong> <p>S/ 250</p></div><div class="opt-item"><strong>D)</strong> <p>S/ 300</p></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="page-break answer-key-section">
+        <h2 style="font-size: 15px; margin: 0 0 6px 0; color: #003366;">CUADRO DE CLAVES Y RESPUESTAS OFICIALES</h2>
+        <p style="font-size: 11px; color: #666; margin: 0 0 10px 0;">Hoja de verificación para el docente / autocorrección.</p>
+        <div class="answer-grid">
+            <div class="key-cell"><b>1</b><span>—</span></div>
+<div class="key-cell"><b>2</b><span>—</span></div>
+<div class="key-cell"><b>3</b><span>—</span></div>
+<div class="key-cell"><b>4</b><span>—</span></div>
+<div class="key-cell"><b>5</b><span>—</span></div>
+<div class="key-cell"><b>6</b><span>—</span></div>
+<div class="key-cell"><b>7</b><span>—</span></div>
+<div class="key-cell"><b>8</b><span>—</span></div>
+<div class="key-cell"><b>9</b><span>—</span></div>
+<div class="key-cell"><b>10</b><span>—</span></div>
+        </div>
+    </div>
+</body>
+</html>

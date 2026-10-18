@@ -1,0 +1,149 @@
+[
+  {
+    "_id": "7008d411-a9e3-47d8-a214-7194263e43d9",
+    "topic": null,
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "slug": "razonamiento-matematico/qM5VMx",
+    "type": "Ejercicio",
+    "question": "<p>En una P.A. de 15 términos, la suma de todos sus términos es 360. Calcular el término central.</p>",
+    "options": {
+      "A": "<p>15</p>",
+      "B": "<p>20</p>",
+      "C": "<p>42</p>",
+      "D": "<p>12</p>",
+      "E": "<p>24</p>"
+    },
+    "rpta": false,
+    "has_rpta": true,
+    "opts": [
+      {
+        "opt": "A",
+        "option": "<p>15</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "B",
+        "option": "<p>20</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "C",
+        "option": "<p>42</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "D",
+        "option": "<p>12</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "E",
+        "option": "<p>24</p>",
+        "block": false,
+        "rpta": false
+      }
+    ]
+  },
+  {
+    "_id": "1649601a-4afb-4f23-b3af-4a70d8c8ab10",
+    "topic": null,
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "slug": "razonamiento-matematico/RfQngB",
+    "type": "Ejercicio",
+    "question": "<p>La diferencia de dos números es 64, la división del mayor entre el menor da 3 de cociente y 18 de residuo. Hallar el número mayor.</p>",
+    "options": {
+      "A": "<p>100</p>",
+      "B": "<p>80</p>",
+      "C": "<p>87</p>",
+      "D": "<p>78</p>",
+      "E": "<p>95</p>"
+    },
+    "rpta": false,
+    "has_rpta": true,
+    "opts": [
+      {
+        "opt": "A",
+        "option": "<p>100</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "B",
+        "option": "<p>80</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "C",
+        "option": "<p>87</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "D",
+        "option": "<p>78</p>",
+        "block": false,
+        "rpta": false
+      },
+      {
+        "opt": "E",
+        "option": "<p>95</p>",
+        "block": false,
+        "rpta": false
+      }
+    ]
+  },
+  {
+    "_id": "3952bb5d-20a8-453e-bfc6-ff83cdc7bb12",
+    "topic": null,
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "slug": "razonamiento-matematico/O0O6ST",
+    "type": "Ejercicio",
+    "question": "<p>Si María es tía de Ana. ¿Qué viene a ser de María el abuelo materno de la hija de Ana? Considere que María tiene hermanas</p>",
+    "options": {
+      "A": "<p>Su tío</p>",
+      "B": "<p>Su sobrino</p>",
+      "C": "<p>Su esposo</p>",
+      "D": "<p>Su abuelo</p>",
+      "E": "<p>Su cuñado</p>"
+    },
+    "rpta": false,
+    "has_rpta": true,
+    "opts": [
+      {
+        "opt": "A",
+        "option": "<p>Su tío</p>",
+        "block": true,
+        "rpta": false
+      },
+      {
+        "opt": "B",
+        "option": "<p>Su sobrino</p>",
+        "block": true,
+        "rpta": false
+      },
+      {
+        "opt": "C",
+        "option": "<p>Su esposo</p>",
+        "block": true,
+        "rpta": false
+      },
+      {
+        "opt": "D",
+        "option": "<p>Su abuelo</p>",
+        "block": true,
+        "rpta": false
+      },
+      {
+        "opt": "E",
+        "option": "<p>Su cuñado</p>",
+        "block": true,
+        "rpta": false
+      }
+    ]
+  }
+]

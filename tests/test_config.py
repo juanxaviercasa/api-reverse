@@ -13,6 +13,11 @@ class TestConfigManagerInit:
         cm = ConfigManager(config_path)
         assert cm.config == DEFAULT_CONFIG
 
+    def test_non_object_json_falls_back_to_defaults(self, config_path):
+        for value in ([], None, 42, "settings"):
+            config_path.write_text(json.dumps(value), encoding="utf-8")
+            assert ConfigManager(config_path).config == DEFAULT_CONFIG
+
     def test_loads_existing_config(self, config_path):
         """ConfigManager loads config from existing file."""
         config_path.parent.mkdir(parents=True, exist_ok=True)

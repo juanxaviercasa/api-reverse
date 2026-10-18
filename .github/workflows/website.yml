@@ -57,6 +57,11 @@ jobs:
       - name: Build static site
         run: pnpm build
 
+      - name: Check types and lint
+        run: |
+          pnpm types:check
+          pnpm lint
+
       - name: Set up Python for browser regression
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
@@ -91,6 +96,7 @@ jobs:
               raise RuntimeError('Static website server did not start')
           PYREADY
           python tests/scroll_e2e.py http://127.0.0.1:8765 out /tmp
+          python tests/knowledge_e2e.py http://127.0.0.1:8765
 
       - name: Show browser server diagnostics on failure
         if: failure()

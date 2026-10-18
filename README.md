@@ -13,6 +13,18 @@
 
 # Reverse API Engineer
 
+## Knowledge Extraction Studio (personalización del fork)
+
+Este fork conserva los modos y lenguajes del motor y añade perfiles de matemáticas, ciencias, desarrollo web, diseño educativo y marketing/ventas. El Studio prepara extracciones con seguimiento de GitHub Actions y descarga del paquete real de datos. También permite consultar directamente un endpoint JSON público sin agente.
+
+Para normalizar JSON locales o exportar respuestas JSON de un HAR sin utilizar modelos:
+
+```bash
+uv run python -m reverse_api.knowledge normalize examples/knowledge/response.json --source-url https://example.org/math-fixture --profile mathematics --output generated/demo
+```
+
+La salida conserva datos observados y procedencia; el mapeo semántico con IA se realiza después. Consulta el [flujo de trabajo, configuración y límites](examples/knowledge/README.md).
+
 > **Turn websites into APIs.** Browse (or let an agent browse), and get a clean, typed client for the endpoints the site actually uses.
 
 <p align="center">

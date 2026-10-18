@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:reverse-api:knowledge-record:1",
+  "title": "Observed knowledge record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "source_url", "captured_at", "content_hash", "raw_file", "json_pointer", "profile", "license", "observed", "inferred"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "source_url": { "type": "string", "format": "uri" },
+    "captured_at": { "type": "string", "format": "date-time" },
+    "content_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "raw_file": { "type": "string", "pattern": "^raw/response-[0-9]+\\.json$" },
+    "json_pointer": { "type": "string" },
+    "profile": { "enum": ["mathematics", "science", "development", "design", "marketing", "general"] },
+    "license": { "type": ["string", "null"] },
+    "observed": {},
+    "inferred": { "type": "object" }
+  }
+}

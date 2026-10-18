@@ -26,10 +26,10 @@
 - The output file is named `{client_filename}` (lowercase with underscores), so name the top-level class holding `main` exactly `ApiClient`, declared package-private, *without* the `public` modifier — a `public` class's filename must exactly match its class name, and this generator's file naming convention doesn't follow Java's usual PascalCase file naming. A package-private top-level class compiles and runs identically; it just isn't visible from other packages, which this single-file client has no need for.
 
 **Authentication & credentials:**
-- Hardcode all cookies, tokens, session IDs, and auth headers found in the traffic directly in the program
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
 - The user should be able to run the program immediately after `mvn compile` — no env vars, no additional config files, no manual setup beyond what's generated
 - If the API uses cookies, build the `HttpClient` with a `CookieHandler`/`CookieManager` so cookies persist across requests
-- If the API uses Bearer tokens or API keys, hardcode them in the request headers
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
 - Handle auth refresh so the program doesn't go stale: if you see a token refresh endpoint, OAuth refresh flow, or login endpoint in the traffic, implement automatic re-authentication when a request returns 401/403. If cookies have expiry, re-fetch them before they expire
 
 **Testing:**

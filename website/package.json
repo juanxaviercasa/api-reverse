@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev -p 3001",
+    "build": "next build --webpack",
+    "dev": "next dev --webpack -p 3001",
     "start": "next start",
     "types:check": "next typegen && tsc --noEmit",
     "lint": "eslint",
-    "pages:preview": "next build && wrangler pages dev out --port 8788",
-    "pages:deploy": "next build && wrangler pages deploy out"
+    "pages:preview": "next build --webpack && wrangler pages dev out --port 8788",
+    "pages:deploy": "next build --webpack && wrangler pages deploy out"
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",

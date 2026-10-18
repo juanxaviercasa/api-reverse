@@ -8,8 +8,8 @@
 - If using external deps, generate a `package.json` with `"type": "module"`
 
 **Authentication & credentials:**
-- Hardcode all cookies, tokens, session IDs, and auth headers found in the traffic directly in the script
-- The user should be able to run the script immediately with zero configuration — no env vars, no config files, no manual setup
+- Never embed captured secrets. Load authentication from environment variables or explicit runtime configuration; use placeholders in examples.
+- Document any required authentication setup; public endpoints should work without credentials.
 - Handle auth refresh so the script doesn't go stale: if you see a token refresh or login endpoint in the traffic, implement automatic re-authentication on 401/403. If cookies have expiry, re-fetch them before they expire
 
 **Testing:**

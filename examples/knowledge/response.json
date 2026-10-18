@@ -1,0 +1,12 @@
+[
+  {
+    "source_id": "example-algebra-001",
+    "kind": "problem",
+    "statement": "Resuelve la ecuación en los números reales.",
+    "latex": "x^2 - 5x + 6 = 0",
+    "answers": [2, 3],
+    "solution": null,
+    "topic": "Álgebra",
+    "note": "Fixture escrita para demostrar el formato; no es una extracción externa."
+  }
+]

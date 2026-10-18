@@ -1,0 +1,23 @@
+[
+  {
+    "id": "7b06dddb-166a-4394-8e49-a7e34e5ca2fb",
+    "area_slug": "habilidades",
+    "university_slug": "unprg",
+    "exam_slug": "unprg-2023-ii",
+    "area_name": "HABILIDADES",
+    "question_type": "Directa",
+    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>Dado el conjunto A={1;2;3} y las relaciones R1 y R2 definidas en A</p><p>\\[R_1 = { (x;y) \\in  A^{2} / x &lt; y },\\]</p><p>\\[R_2 = { (x;y) \\in A^{2} / x + y = 5}\\]</p><p>Calcule el número de elementos \\[R_1 \\cup R_2\\]</p></div>",
+    "question_text": "Dado el conjunto A={1;2;3} y las relaciones R1 y R2 definidas en A \\[R_1 = { (x;y) \\in A^{2} / x &lt; y },\\] \\[R_2 = { (x;y) \\in A^{2} / x + y = 5}\\] Calcule el número de elementos \\[R_1 \\cup R_2\\]",
+    "option_a": "<p class=\"fs-4\"> 1 </p>",
+    "option_b": "<p class=\"fs-4\"> 2 </p>",
+    "option_c": "<p class=\"fs-4\"> 3 </p>",
+    "option_d": "<p class=\"fs-4\"> 4 </p>",
+    "option_e": "<p class=\"fs-4\"> 5 </p>",
+    "correct_key": null,
+    "resolution_html": null,
+    "resolution_text": null,
+    "web_url": "https://eduteka.pe/preguntas/habilidades-ejercicio-aa72e43b",
+    "downloaded_at": "2026-10-18 21:34:07",
+    "difficulty_level": "Intermedio"
+  }
+]

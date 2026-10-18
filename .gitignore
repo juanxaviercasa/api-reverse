@@ -78,10 +78,15 @@ dmypy.json
 cython_debug/
 
 # Project specific
+generated/
+.capture-work/
 har/
 scripts/*
 !scripts/clean_build.sh
 !scripts/validation/
+!scripts/*.py
+*.db-wal
+*.db-shm
 scripts_built/
 src/reverse_api/scripts/
 .reverse-api/

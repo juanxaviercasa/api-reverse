@@ -41,12 +41,20 @@ export function SiteNav() {
           </Link>
           <nav className="flex items-center gap-1 md:gap-4">
             <Link
+              href="/banco"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-white bg-emerald-600 rounded-xl hover:opacity-90 transition-opacity shadow-sm"
+              aria-label="Banco Preuniversitario"
+            >
+              <span>Banco 14K</span>
+              <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded font-mono">KaTeX</span>
+            </Link>
+            <Link
               href="/studio"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold text-white bg-fd-primary rounded-xl hover:opacity-90 transition-opacity shadow-sm"
               aria-label="Studio"
             >
               <span>Studio</span>
-              <span className="text-[10px] bg-white/20 px-1.5 py-0.2 rounded font-mono">Math & Dev</span>
+              <span className="text-[10px] bg-white/20 px-1.5 py-0.2 rounded font-mono">Knowledge</span>
             </Link>
             <Link
               href="/docs"

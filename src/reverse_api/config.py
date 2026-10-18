@@ -48,6 +48,8 @@ class ConfigManager:
             try:
                 with open(self.config_path, encoding="utf-8-sig") as f:
                     user_config = json.load(f)
+                    if not isinstance(user_config, dict):
+                        return
 
                     # Backward compatibility: migrate old config keys
                     # Migrate "model" -> "claude_code_model"

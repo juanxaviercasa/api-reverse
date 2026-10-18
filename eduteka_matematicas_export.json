@@ -1,0 +1,72 @@
+[
+  {
+    "id": "7008d411-a9e3-47d8-a214-7194263e43d9",
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "pregunta_html": "<p>En una P.A. de 15 términos, la suma de todos sus términos es 360. Calcular el término central.</p>",
+    "pregunta_texto": "En una P.A. de 15 términos, la suma de todos sus términos es 360. Calcular el término central.",
+    "opciones": {
+      "A": "<p>15</p>",
+      "B": "<p>20</p>",
+      "C": "<p>42</p>",
+      "D": "<p>12</p>",
+      "E": "<p>24</p>"
+    },
+    "url": "https://eduteka.pe/preguntas/razonamiento-matematico/qM5VMx"
+  },
+  {
+    "id": "1649601a-4afb-4f23-b3af-4a70d8c8ab10",
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "pregunta_html": "<p>La diferencia de dos números es 64, la división del mayor entre el menor da 3 de cociente y 18 de residuo. Hallar el número mayor.</p>",
+    "pregunta_texto": "La diferencia de dos números es 64, la división del mayor entre el menor da 3 de cociente y 18 de residuo. Hallar el número mayor.",
+    "opciones": {
+      "A": "<p>100</p>",
+      "B": "<p>80</p>",
+      "C": "<p>87</p>",
+      "D": "<p>78</p>",
+      "E": "<p>95</p>"
+    },
+    "url": "https://eduteka.pe/preguntas/razonamiento-matematico/RfQngB"
+  },
+  {
+    "id": "3952bb5d-20a8-453e-bfc6-ff83cdc7bb12",
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "pregunta_html": "<p>Si María es tía de Ana. ¿Qué viene a ser de María el abuelo materno de la hija de Ana? Considere que María tiene hermanas</p>",
+    "pregunta_texto": "Si María es tía de Ana. ¿Qué viene a ser de María el abuelo materno de la hija de Ana? Considere que María tiene hermanas",
+    "opciones": {
+      "A": "<p>Su tío</p>",
+      "B": "<p>Su sobrino</p>",
+      "C": "<p>Su esposo</p>",
+      "D": "<p>Su abuelo</p>",
+      "E": "<p>Su cuñado</p>"
+    },
+    "url": "https://eduteka.pe/preguntas/razonamiento-matematico/O0O6ST"
+  },
+  {
+    "id": "19bb26df-e5b9-408a-8086-455d1b65f39c",
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "pregunta_html": "<p>Si el 15% del área de un círculo es igual a 60% de la longitud de su circunferencia; hallar el valor del radio expresado en metros.</p>",
+    "pregunta_texto": "Si el 15% del área de un círculo es igual a 60% de la longitud de su circunferencia; hallar el valor del radio expresado en metros.",
+    "opciones": {
+      "A": "<p>8m</p>",
+      "B": "<p>6m</p>",
+      "C": "<p>8.7m</p>",
+      "D": "<p>6.7m</p>",
+      "E": "<p>10m</p>"
+    },
+    "url": "https://eduteka.pe/preguntas/razonamiento-matematico/_gk6xf"
+  },
+  {
+    "id": "871f2fcc-ec18-409a-9fb8-8e7d6082c89a",
+    "area": "RAZONAMIENTO MATEMÁTICO",
+    "pregunta_html": "<p>Un reloj se adelanta 1 minuto por hora, si empieza correctamente a las 12 del mediodía del día jueves 16 de setiembre ¿Cuándo volverá a señalar la hora correcta?</p>",
+    "pregunta_texto": "Un reloj se adelanta 1 minuto por hora, si empieza correctamente a las 12 del mediodía del día jueves 16 de setiembre ¿Cuándo volverá a señalar la hora correcta?",
+    "opciones": {
+      "A": "<p>10 de octubre</p>",
+      "B": "<p>16 de octubre</p>",
+      "C": "<p>30 de setiembre</p>",
+      "D": "<p>4 de octubre</p>",
+      "E": "<p>15 de octubre</p>"
+    },
+    "url": "https://eduteka.pe/preguntas/razonamiento-matematico/xXIrIF"
+  }
+]
