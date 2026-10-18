@@ -837,13 +837,33 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.25em 0;
+  scrollbar-width: thin;
 }
 
-/* Inside option buttons, keep display math clean and inline-friendly */
+/* Inside option buttons, keep display math clean, vertically centered, and completely scrollbar-free */
+button .math-container,
+button .katex,
+button .katex-display,
+button .katex-html {
+  overflow: visible !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+button .math-container::-webkit-scrollbar,
+button::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 button .katex-display {
-  margin: 0.1em 0 !important;
-  display: inline-block !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
   text-align: left !important;
+  overflow: visible !important;
+  padding: 0.15em 0 !important;
 }
 
 button .katex-display > .katex {

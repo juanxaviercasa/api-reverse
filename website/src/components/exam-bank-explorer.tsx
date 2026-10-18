@@ -18,7 +18,9 @@ import {
   Play,
   RotateCcw,
   Trophy,
-  ImageIcon
+  ImageIcon,
+  KeyRound,
+  FileQuestion
 } from 'lucide-react';
 
 interface Question {
@@ -42,6 +44,7 @@ interface Question {
   difficulty_level?: string;
 }
 
+// Diccionario oficial con nombres formales y tildación correcta
 const TOP_COURSES = [
   { id: 'all', name: 'Todos los Cursos (14,558)' },
   { id: 'razonamiento-matematico', name: 'Razonamiento Matemático (1,352)' },
@@ -51,31 +54,230 @@ const TOP_COURSES = [
   { id: 'aritmetica', name: 'Aritmética (580)' },
   { id: 'fisica', name: 'Física (1,000)' },
   { id: 'quimica', name: 'Química (1,104)' },
-  { id: 'razonamiento-verbal', name: 'Razonamiento Verbal (1,587)' },
   { id: 'biologia', name: 'Biología (1,061)' },
+  { id: 'anatomia', name: 'Anatomía (64)' },
+  { id: 'razonamiento-verbal', name: 'Razonamiento Verbal (1,587)' },
+  { id: 'lenguaje', name: 'Lenguaje (586)' },
+  { id: 'literatura', name: 'Literatura (405)' },
+  { id: 'economia', name: 'Economía (454)' },
+  { id: 'filosofia', name: 'Filosofía (260)' },
+  { id: 'psicologia', name: 'Psicología (249)' },
+  { id: 'historia-del-peru', name: 'Historia del Perú (203)' },
+  { id: 'historia-universal', name: 'Historia Universal (192)' },
+  { id: 'geografia', name: 'Geografía (284)' },
+  { id: 'educacion-civica', name: 'Educación Cívica (163)' },
+  { id: 'ingles', name: 'Inglés (192)' },
 ];
 
+// Nombres oficiales completos de universidades peruanas con siglas en mayúscula
 const TOP_UNIVERSITIES = [
-  { id: 'all', name: 'Todas las Universidades' },
-  { id: 'uni', name: 'UNI - Univ. Nac. de Ingeniería (1,612)' },
-  { id: 'san-marcos', name: 'San Marcos - UNMSM (826)' },
-  { id: 'unt', name: 'UNT - Univ. Nac. de Trujillo (1,000)' },
-  { id: 'unsch', name: 'UNSCH - San Cristóbal de Huamanga (2,100)' },
-  { id: 'unsm', name: 'UNSM - San Martín (3,127)' },
-  { id: 'unica', name: 'UNICA - San Luis Gonzaga (1,193)' },
-  { id: 'unsa', name: 'UNSA - San Agustín de Arequipa (300)' },
-  { id: 'uncp', name: 'UNCP - Centro del Perú (250)' },
+  { id: 'all', name: 'Todas las Universidades (14,558 preguntas)' },
+  { id: 'uni', name: 'Universidad Nacional de Ingeniería (UNI) — 1,612' },
+  { id: 'san-marcos', name: 'Universidad Nacional Mayor de San Marcos (UNMSM) — 826' },
+  { id: 'unsch', name: 'Universidad Nacional de San Cristóbal de Huamanga (UNSCH) — 2,100' },
+  { id: 'unsm', name: 'Universidad Nacional de San Martín (UNSM) — 3,127' },
+  { id: 'unt', name: 'Universidad Nacional de Trujillo (UNT) — 1,000' },
+  { id: 'unica', name: 'Universidad Nacional San Luis Gonzaga (UNICA) — 1,193' },
+  { id: 'unj', name: 'Universidad Nacional de Jaén (UNJ) — 610' },
+  { id: 'unjbg', name: 'Universidad Nacional Jorge Basadre Grohmann (UNJBG) — 540' },
+  { id: 'untrm', name: 'Universidad Nacional Toribio Rodríguez de Mendoza (UNTRM) — 700' },
+  { id: 'unsa', name: 'Universidad Nacional de San Agustín de Arequipa (UNSA) — 300' },
+  { id: 'uns', name: 'Universidad Nacional del Santa (UNS) — 300' },
+  { id: 'uncp', name: 'Universidad Nacional del Centro del Perú (UNCP) — 250' },
+  { id: 'unac', name: 'Universidad Nacional del Callao (UNAC) — 210' },
+  { id: 'unap', name: 'Universidad Nacional de la Amazonía Peruana (UNAP) — 200' },
+  { id: 'unc', name: 'Universidad Nacional de Cajamarca (UNC) — 180' },
+  { id: 'unah', name: 'Universidad Nacional Autónoma de Huanta (UNAH) — 120' },
+  { id: 'unamba', name: 'Universidad Nacional Micaela Bastidas de Apurímac (UNAMBA) — 60' },
+  { id: 'untumbes', name: 'Universidad Nacional de Tumbes (UNTUMBES) — 100' },
+  { id: 'unprg', name: 'Universidad Nacional Pedro Ruiz Gallo (UNPRG) — 100' },
+  { id: 'pronabec', name: 'PRONABEC (Beca 18 / Talento Perú) — 60' },
 ];
+
+// Helper para siglas oficiales en mayúscula
+export function formatUniversityBadge(slug: string | null): string {
+  if (!slug) return 'EXAMEN';
+  const s = slug.toLowerCase();
+  const map: Record<string, string> = {
+    uni: 'UNI',
+    'san-marcos': 'UNMSM',
+    unac: 'UNAC',
+    unsa: 'UNSA',
+    unt: 'UNT',
+    unsch: 'UNSCH',
+    unsm: 'UNSM',
+    unica: 'UNICA',
+    uncp: 'UNCP',
+    unjbg: 'UNJBG',
+    unprg: 'UNPRG',
+    unc: 'UNC',
+    uns: 'UNS',
+    unap: 'UNAP',
+    unj: 'UNJ',
+    untrm: 'UNTRM',
+    unah: 'UNAH',
+    unamba: 'UNAMBA',
+    untumbes: 'UNTUMBES',
+    pronabec: 'PRONABEC',
+  };
+  return map[s] || s.toUpperCase();
+}
+
+// Helper para formatear títulos de exámenes con números romanos y tildación correcta
+export function formatExamTitle(slug: string | null): string {
+  if (!slug) return '';
+
+  const DICTIONARY: Record<string, string> = {
+    uni: 'UNI',
+    unmsm: 'UNMSM',
+    unac: 'UNAC',
+    unsa: 'UNSA',
+    unsch: 'UNSCH',
+    uncp: 'UNCP',
+    unjbg: 'UNJBG',
+    unprg: 'UNPRG',
+    unap: 'UNAP',
+    untrm: 'UNTRM',
+    unamba: 'UNAMBA',
+    unsm: 'UNSM',
+    unah: 'UNAH',
+    unt: 'UNT',
+    unj: 'UNJ',
+    uns: 'UNS',
+    unica: 'UNICA',
+    unc: 'UNC',
+    untumbes: 'UNTUMBES',
+    pronabec: 'PRONABEC',
+    cepre: 'CEPRE',
+    cepreuni: 'CEPRE-UNI',
+    cpu: 'CPU',
+    cepu: 'CEPU',
+    pre: 'Pre',
+    admision: 'Admisión',
+    practica: 'Práctica',
+    calificada: 'Calificada',
+    ordinario: 'Ordinario',
+    extraordinario: 'Extraordinario',
+    seleccion: 'Selección',
+    simulacro: 'Simulacro',
+    concurso: 'Concurso',
+    escolar: 'Escolar',
+    primer: 'Primer',
+    primera: 'Primera',
+    segundo: 'Segundo',
+    segunda: 'Segunda',
+    tercer: 'Tercer',
+    tercera: 'Tercera',
+    cuarto: 'Cuarto',
+    cuarta: 'Cuarta',
+    quinto: 'Quinto',
+    quinta: 'Quinta',
+    sexto: 'Sexto',
+    examen: 'Examen',
+    examenes: 'Exámenes',
+    ciclo: 'Ciclo',
+    matematicas: 'Matemáticas',
+    matematica: 'Matemática',
+    algebra: 'Álgebra',
+    geometria: 'Geometría',
+    trigonometria: 'Trigonometría',
+    aritmetica: 'Aritmética',
+    fisica: 'Física',
+    quimica: 'Química',
+    biologia: 'Biología',
+    anatomia: 'Anatomía',
+    economia: 'Economía',
+    filosofia: 'Filosofía',
+    psicologia: 'Psicología',
+    geografia: 'Geografía',
+    ingles: 'Inglés',
+    comunicacion: 'Comunicación',
+    ciencias: 'Ciencias',
+    salud: 'Salud',
+    letras: 'Letras',
+    humanidades: 'Humanidades',
+    ingenieria: 'Ingeniería',
+    de: 'de',
+    del: 'del',
+    la: 'la',
+    las: 'las',
+    los: 'los',
+    y: 'y',
+    e: 'e',
+    i: 'I',
+    ii: 'II',
+    iii: 'III',
+    iv: 'IV',
+    v: 'V',
+    vi: 'VI',
+    vii: 'VII',
+    viii: 'VIII',
+  };
+
+  const parts = slug.split('-');
+  return parts.map((part, index) => {
+    const lower = part.toLowerCase();
+    
+    // Si coincide exactamente con el diccionario
+    if (DICTIONARY[lower]) return DICTIONARY[lower];
+
+    // Semestres tipo 2024-1 o 2024-2 precedidos por un año
+    const prev = index > 0 ? parts[index - 1] : '';
+    if (/^\d{4}$/.test(prev)) {
+      if (lower === '1') return 'I';
+      if (lower === '2') return 'II';
+      if (lower === '3') return 'III';
+    }
+
+    // Años de 4 dígitos
+    if (/^\d{4}$/.test(part)) return part;
+
+    // Números ordinales tipo 1ro, 2do, 3ro, 4to
+    if (/^\d+(ro|do|er|to|ta|da|ra)$/i.test(part)) {
+      return part.toLowerCase();
+    }
+
+    // Mayúscula inicial por defecto
+    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+  }).join(' ');
+}
+
+// Helper para nombres de materias con tilde
+export function formatCourseName(areaName: string | null): string {
+  if (!areaName) return '';
+  const map: Record<string, string> = {
+    'algebra': 'Álgebra',
+    'geometria': 'Geometría',
+    'trigonometria': 'Trigonometría',
+    'aritmetica': 'Aritmética',
+    'fisica': 'Física',
+    'quimica': 'Química',
+    'biologia': 'Biología',
+    'anatomia': 'Anatomía',
+    'economia': 'Economía',
+    'filosofia': 'Filosofía',
+    'psicologia': 'Psicología',
+    'geografia': 'Geografía',
+    'ingles': 'Inglés',
+    'educacion civica': 'Educación Cívica',
+    'razonamiento matematico': 'Razonamiento Matemático',
+    'razonamiento verbal': 'Razonamiento Verbal',
+    'comunicacion': 'Comunicación',
+    'redaccion': 'Redacción',
+  };
+  const key = areaName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  return map[key] || areaName;
+}
 
 export function ExamBankExplorer() {
   const [course, setCourse] = useState('algebra');
   const [university, setUniversity] = useState('all');
   const [difficulty, setDifficulty] = useState('all');
+  const [keyFilter, setKeyFilter] = useState<'all' | 'with-key' | 'practice'>('all');
   const [search, setSearch] = useState('');
   const [onlyImages, setOnlyImages] = useState(false);
   const [page, setPage] = useState(1);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [allFiltered, setAllFiltered] = useState<Question[]>([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -89,46 +291,6 @@ export function ExamBankExplorer() {
   const [examFinished, setExamFinished] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Inyectar script de KaTeX para renderizado de fórmulas
-  useEffect(() => {
-    if (!document.getElementById('katex-css')) {
-      const link = document.createElement('link');
-      link.id = 'katex-css';
-      link.rel = 'stylesheet';
-      link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
-      document.head.appendChild(link);
-    }
-
-    if (!document.getElementById('katex-js')) {
-      const script = document.createElement('script');
-      script.id = 'katex-js';
-      script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
-      document.head.appendChild(script);
-
-      const autoRender = document.createElement('script');
-      autoRender.id = 'katex-autorender';
-      autoRender.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
-      document.head.appendChild(autoRender);
-    }
-  }, []);
-
-  // Re-renderizar KaTeX tras cargar preguntas o alternar vistas
-  useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).renderMathInElement && containerRef.current) {
-      setTimeout(() => {
-        (window as any).renderMathInElement(containerRef.current, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '\\[', right: '\\]', display: true },
-            { left: '$', right: '$', display: false },
-            { left: '\\(', right: '\\)', display: false },
-          ],
-          throwOnError: false,
-        });
-      }, 100);
-    }
-  }, [questions, revealedSolutions, isExamMode, examFinished]);
 
   // Manejo del Temporizador de Simulacro
   useEffect(() => {
@@ -169,6 +331,12 @@ export function ExamBankExplorer() {
         if (difficulty && difficulty !== 'all') {
           raw = raw.filter(q => q.difficulty_level === difficulty);
         }
+        // Filtro por disponibilidad de clave
+        if (keyFilter === 'with-key') {
+          raw = raw.filter(q => Boolean(q.correct_key));
+        } else if (keyFilter === 'practice') {
+          raw = raw.filter(q => !q.correct_key);
+        }
         // Filtro solo con imágenes
         if (onlyImages) {
           raw = raw.filter(q => q.question_html && q.question_html.includes('<img'));
@@ -183,7 +351,6 @@ export function ExamBankExplorer() {
         }
 
         if (!isCancelled) {
-          setAllFiltered(raw);
           setTotal(raw.length);
           const pageSize = isExamMode ? 20 : 10;
           setTotalPages(Math.ceil(raw.length / pageSize) || 1);
@@ -201,7 +368,7 @@ export function ExamBankExplorer() {
     }
     loadData();
     return () => { isCancelled = true; };
-  }, [course, university, difficulty, search, page, onlyImages, isExamMode]);
+  }, [course, university, difficulty, keyFilter, search, page, onlyImages, isExamMode]);
 
   const handleSelectOption = (qId: string, opt: string) => {
     setSelectedAnswers(prev => ({ ...prev, [qId]: opt }));
@@ -255,7 +422,7 @@ export function ExamBankExplorer() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 space-y-8" ref={containerRef}>
+    <div className="mx-auto max-w-[1560px] px-4 sm:px-6 lg:px-8 py-8 space-y-8" ref={containerRef}>
       {/* Estilos para impresión en PDF A4 */}
       <style jsx global>{`
         @media print {
@@ -306,10 +473,10 @@ export function ExamBankExplorer() {
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-ink">
           {isExamMode ? 'Simulacro de Examen de Admisión' : 'Explorador y Banco Preuniversitario'}
         </h1>
-        <p className="max-w-3xl text-sm sm:text-base text-ink-soft">
+        <p className="max-w-4xl text-sm sm:text-base text-ink-soft">
           {isExamMode 
             ? 'Pon a prueba tus conocimientos en condiciones de examen real. Marca tus respuestas y al finalizar obtendrás tu puntaje neto con solucionario.'
-            : 'Explora 14,558 preguntas reales de 20 universidades peruanas con 2,000+ diagramas y fórmulas KaTeX nítidas.'}
+            : 'Explora 14,558 preguntas reales de 20 universidades peruanas con 2,000+ diagramas y fórmulas matemáticas nítidas renderizadas con KaTeX.'}
         </p>
       </header>
 
@@ -384,7 +551,7 @@ export function ExamBankExplorer() {
         </div>
       )}
 
-      {/* Barra de Filtros (Oculta durante simulacro para no distraer) */}
+      {/* Barra de Filtros en Modo Estudio */}
       {!isExamMode && (
         <section className="rounded-2xl border border-fd-border bg-fd-card p-5 space-y-4 shadow-sm no-print">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -402,7 +569,7 @@ export function ExamBankExplorer() {
               </select>
             </div>
 
-            {/* Selector de Universidad */}
+            {/* Selector de Universidad con nombres completos oficiales */}
             <div>
               <label className="block text-xs font-semibold text-ink uppercase tracking-wider mb-2">
                 Universidad
@@ -427,21 +594,36 @@ export function ExamBankExplorer() {
                 className="w-full rounded-xl border border-fd-border bg-fd-background p-2.5 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-fd-primary"
               >
                 <option value="all">Todas las Dificultades</option>
-                <option value="Avanzado">Avanzado (UNI / CEPREUNI)</option>
+                <option value="Avanzado">Avanzado (UNI / CEPRE-UNI)</option>
                 <option value="Intermedio">Intermedio (San Marcos / UNT)</option>
                 <option value="Básico">Básico (Escolar / Selección)</option>
               </select>
             </div>
 
-            {/* Búsqueda por texto */}
+            {/* Selector de Disponibilidad de Clave */}
             <div>
               <label className="block text-xs font-semibold text-ink uppercase tracking-wider mb-2">
-                Buscar en Enunciado
+                Disponibilidad de Clave
               </label>
+              <select
+                value={keyFilter}
+                onChange={(e) => { setKeyFilter(e.target.value as any); setPage(1); }}
+                className="w-full rounded-xl border border-fd-border bg-fd-background p-2.5 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-fd-primary"
+              >
+                <option value="all">Todas las Preguntas (14.5K)</option>
+                <option value="with-key">🔑 Solo con Clave Oficial</option>
+                <option value="practice">📝 Preguntas Propuestas (Modo Práctica)</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Búsqueda por texto y opciones secundarias */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 pt-2">
+            <div className="sm:col-span-2">
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="ej: logaritmo, matriz, fuerza..."
+                  placeholder="Buscar en enunciado o tema (ej: logaritmo, matriz, cinemática, enlaces, mitosis)..."
                   value={search}
                   onChange={(e) => { setSearch(e.target.value); setPage(1); }}
                   className="w-full rounded-xl border border-fd-border bg-fd-background p-2.5 pl-9 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-fd-primary"
@@ -449,13 +631,8 @@ export function ExamBankExplorer() {
                 <Search className="absolute left-3 top-3 text-ink-soft" size={16} />
               </div>
             </div>
-          </div>
 
-          {/* Filtros secundarios y estado */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-fd-border pt-4 text-xs text-ink-soft">
-            <div className="flex items-center gap-4">
-              <span>Mostrando <strong>{questions.length}</strong> de <strong>{total.toLocaleString()}</strong> preguntas encontradas</span>
-              
+            <div className="flex items-center justify-between sm:justify-end gap-4 text-xs text-ink-soft">
               <label className="inline-flex items-center gap-1.5 cursor-pointer font-medium text-ink hover:text-fd-primary">
                 <input
                   type="checkbox"
@@ -466,18 +643,27 @@ export function ExamBankExplorer() {
                 <ImageIcon size={14} className="text-fd-primary" />
                 <span>Solo con diagramas/figuras</span>
               </label>
-            </div>
 
-            <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-1 text-emerald-600 font-medium">
-                <Sparkles size={14} /> Fórmulas KaTeX / MathJax Activas
+                <Sparkles size={14} /> KaTeX Activo
               </span>
             </div>
+          </div>
+
+          <div className="border-t border-fd-border pt-3 text-xs text-ink-soft flex items-center justify-between">
+            <span>
+              Mostrando <strong>{questions.length}</strong> de <strong>{total.toLocaleString()}</strong> preguntas encontradas
+            </span>
+            {keyFilter !== 'all' && (
+              <span className="text-fd-primary font-semibold">
+                Filtro activo: {keyFilter === 'with-key' ? 'Solo con clave oficial' : 'Preguntas propuestas'}
+              </span>
+            )}
           </div>
         </section>
       )}
 
-      {/* Encabezado visible al imprimir */}
+      {/* Encabezado visible al imprimir en PDF */}
       <div className="hidden print-header border-b-2 border-slate-900 pb-3 mb-6">
         <h1 className="text-xl font-bold uppercase tracking-wider text-slate-900">
           Evaluación y Práctica Preuniversitaria
@@ -485,11 +671,11 @@ export function ExamBankExplorer() {
         <div className="grid grid-cols-3 text-xs text-slate-700 mt-2">
           <div>Alumno(a): ________________________________________</div>
           <div>Fecha: ____/____/________</div>
-          <div>Materia: {course.toUpperCase()}</div>
+          <div>Materia: {formatCourseName(course).toUpperCase()}</div>
         </div>
       </div>
 
-      {/* Lista de Preguntas */}
+      {/* Lista de Preguntas en Diseño de Dos Columnas */}
       <div className="space-y-6">
         {loading ? (
           <div className="text-center py-16 text-ink-soft space-y-3 no-print">
@@ -503,135 +689,167 @@ export function ExamBankExplorer() {
             <p className="text-sm">Prueba seleccionando otra materia o desactivando los filtros específicos.</p>
           </div>
         ) : (
-          questions.map((q, idx) => {
-            const chosen = selectedAnswers[q.id];
-            const hasKey = Boolean(q.correct_key);
-            const isRevealed = revealedSolutions[q.id] || examFinished;
-            const isCorrect = hasKey && chosen === q.correct_key;
-            const isWrong = hasKey && chosen && chosen !== q.correct_key;
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+            {questions.map((q, idx) => {
+              const chosen = selectedAnswers[q.id];
+              const hasKey = Boolean(q.correct_key);
+              const isRevealed = revealedSolutions[q.id] || examFinished;
+              const isCorrect = hasKey && chosen === q.correct_key;
+              const isWrong = hasKey && chosen && chosen !== q.correct_key;
 
-            return (
-              <article 
-                key={q.id}
-                className="rounded-2xl border border-fd-border bg-fd-card p-6 space-y-4 shadow-sm hover:border-fd-primary/40 transition-colors"
-              >
-                {/* Badges superiores */}
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-lg bg-fd-primary/10 px-2.5 py-1 text-xs font-bold text-fd-primary uppercase">
-                      #{(page - 1) * (isExamMode ? 20 : 10) + idx + 1}
-                    </span>
-                    <span className="rounded-lg bg-fd-muted px-2.5 py-1 text-xs font-semibold text-ink uppercase">
-                      {q.university_slug?.toUpperCase() || 'EXAMEN'}
-                    </span>
-                    <span className="rounded-lg bg-fd-muted px-2.5 py-1 text-xs text-ink-soft">
-                      {q.area_name}
-                    </span>
-                    {q.difficulty_level && (
-                      <span className={`rounded-lg px-2.5 py-1 text-xs font-medium ${
-                        q.difficulty_level === 'Avanzado' ? 'bg-red-500/10 text-red-600' :
-                        q.difficulty_level === 'Básico' ? 'bg-emerald-500/10 text-emerald-600' :
-                        'bg-amber-500/10 text-amber-600'
-                      }`}>
-                        {q.difficulty_level}
-                      </span>
-                    )}
-                  </div>
-                  {q.exam_slug && (
-                    <span className="text-xs text-ink-soft truncate max-w-xs">
-                      {q.exam_slug.replace(/-/g, ' ')}
-                    </span>
-                  )}
-                </div>
+              return (
+                <article 
+                  key={q.id}
+                  className="flex flex-col justify-between rounded-2xl border border-fd-border bg-fd-card p-6 space-y-5 shadow-sm hover:border-fd-primary/40 transition-colors h-full"
+                >
+                  <div className="space-y-4">
+                    {/* Badges superiores formateados */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-fd-border pb-3">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        <span className="rounded-lg bg-fd-primary/10 px-2.5 py-1 text-xs font-bold text-fd-primary">
+                          #{(page - 1) * (isExamMode ? 20 : 10) + idx + 1}
+                        </span>
+                        <span className="rounded-lg bg-fd-muted px-2.5 py-1 text-xs font-bold text-ink">
+                          {formatUniversityBadge(q.university_slug)}
+                        </span>
+                        <span className="rounded-lg bg-fd-muted px-2.5 py-1 text-xs font-medium text-ink-soft">
+                          {formatCourseName(q.area_name)}
+                        </span>
+                        {q.difficulty_level && (
+                          <span className={`rounded-lg px-2.5 py-1 text-xs font-medium ${
+                            q.difficulty_level === 'Avanzado' ? 'bg-red-500/10 text-red-600' :
+                            q.difficulty_level === 'Básico' ? 'bg-emerald-500/10 text-emerald-600' :
+                            'bg-amber-500/10 text-amber-600'
+                          }`}>
+                            {q.difficulty_level}
+                          </span>
+                        )}
+                        {hasKey ? (
+                          <span className="rounded-lg bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 inline-flex items-center gap-1">
+                            <KeyRound size={11} /> Clave Oficial
+                          </span>
+                        ) : (
+                          <span className="rounded-lg bg-amber-500/10 px-2 py-0.5 text-[11px] font-semibold text-amber-700 inline-flex items-center gap-1">
+                            <FileQuestion size={11} /> Propuesta
+                          </span>
+                        )}
+                      </div>
 
-                {/* Enunciado con Fórmulas e Imágenes Locales */}
-                <MathHtml 
-                  html={q.question_html} 
-                  className="text-base text-ink leading-relaxed font-sans overflow-x-auto py-2 [&_img]:max-h-64 [&_img]:mx-auto [&_img]:my-3 [&_img]:rounded-xl [&_img]:border [&_img]:border-fd-border [&_img]:bg-white [&_img]:p-2"
-                />
+                      {q.exam_slug && (
+                        <span className="text-xs font-medium text-ink-soft text-right">
+                          {formatExamTitle(q.exam_slug)}
+                        </span>
+                      )}
+                    </div>
 
-                {/* Opciones A - E */}
-                <div className="grid gap-2 sm:grid-cols-2 pt-2">
-                  {(['A', 'B', 'C', 'D', 'E'] as const).map((letra) => {
-                    const optContent = q[`option_${letra.toLowerCase()}` as keyof Question] as string;
-                    if (!optContent) return null;
-
-                    const isSelected = chosen === letra;
-                    const isOfficialCorrect = hasKey && q.correct_key === letra && (isRevealed || (chosen && !isExamMode));
-
-                    let btnClass = 'border-fd-border bg-fd-background hover:bg-fd-muted text-ink';
-                    if (isOfficialCorrect) {
-                      btnClass = 'border-emerald-500 bg-emerald-500/10 text-emerald-700 font-semibold';
-                    } else if (isSelected && isWrong && !isExamMode) {
-                      btnClass = 'border-rose-500 bg-rose-500/10 text-rose-700';
-                    } else if (isSelected) {
-                      btnClass = 'border-fd-primary bg-fd-primary/10 text-fd-primary font-semibold';
-                    }
-
-                    return (
-                      <button
-                        key={letra}
-                        disabled={examFinished}
-                        onClick={() => handleSelectOption(q.id, letra)}
-                        className={`flex items-start gap-3 rounded-xl border p-3 text-left transition-all ${btnClass} [&_img]:max-h-24 [&_img]:rounded-lg`}
-                      >
-                        <span className="font-bold shrink-0">{letra})</span>
-                        <MathHtml 
-                          html={optContent}
-                          className="grow text-sm overflow-x-auto" 
-                          inlineDisplay={true}
-                        />
-                        {isOfficialCorrect && <CheckCircle2 className="text-emerald-500 shrink-0" size={16} />}
-                        {isSelected && isWrong && !isExamMode && <XCircle className="text-rose-500 shrink-0" size={16} />}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Acciones de la Pregunta (solo en modo estudio o tras simulacro) */}
-                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-fd-border pt-4 no-print">
-                  <div className="flex items-center gap-2">
-                    {hasKey && !isExamMode && (
-                      <button
-                        onClick={() => toggleSolution(q.id)}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-fd-border px-3 py-1.5 text-xs font-semibold text-ink hover:bg-fd-muted transition-colors"
-                      >
-                        {isRevealed ? <EyeOff size={14} /> : <Eye size={14} />}
-                        {isRevealed ? 'Ocultar Clave' : 'Revelar Clave Oficial'}
-                      </button>
-                    )}
-                    {chosen && hasKey && !isExamMode && (
-                      <span className={`text-xs font-semibold ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}`}>
-                        {isCorrect ? '¡Correcto! Clave ' + q.correct_key : 'Incorrecto. La clave es ' + q.correct_key}
-                      </span>
-                    )}
-                  </div>
-
-                  <a
-                    href={q.web_url || '#'}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-xs text-fd-primary hover:underline inline-flex items-center gap-1"
-                  >
-                    Ver en Eduteka original
-                  </a>
-                </div>
-
-                {/* Solución explicativa paso a paso */}
-                {isRevealed && q.resolution_html && (
-                  <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-2 mt-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block">
-                      Resolución Oficial Paso a Paso
-                    </span>
+                    {/* Enunciado con Fórmulas e Imágenes Locales */}
                     <MathHtml 
-                      html={q.resolution_html}
-                      className="text-sm text-ink leading-relaxed" 
+                      html={q.question_html} 
+                      className="text-base text-ink leading-relaxed font-sans overflow-x-auto py-1 [&_img]:max-h-64 [&_img]:mx-auto [&_img]:my-3 [&_img]:rounded-xl [&_img]:border [&_img]:border-fd-border [&_img]:bg-white [&_img]:p-2"
                     />
+
+                    {/* Opciones A - E */}
+                    <div className="grid gap-2.5 sm:grid-cols-2 pt-1">
+                      {(['A', 'B', 'C', 'D', 'E'] as const).map((letra) => {
+                        const optContent = q[`option_${letra.toLowerCase()}` as keyof Question] as string;
+                        if (!optContent) return null;
+
+                        const isSelected = chosen === letra;
+                        const isOfficialCorrect = hasKey && q.correct_key === letra && (isRevealed || (chosen && !isExamMode));
+
+                        let btnClass = 'border-fd-border bg-fd-background hover:bg-fd-muted text-ink';
+                        if (isOfficialCorrect) {
+                          btnClass = 'border-emerald-500 bg-emerald-500/10 text-emerald-700 font-semibold';
+                        } else if (isSelected && isWrong && !isExamMode) {
+                          btnClass = 'border-rose-500 bg-rose-500/10 text-rose-700';
+                        } else if (isSelected) {
+                          btnClass = 'border-fd-primary bg-fd-primary/10 text-fd-primary font-semibold';
+                        }
+
+                        // Opción E abarca 2 columnas para un diseño balanceado si es la última
+                        const spanClass = letra === 'E' ? 'sm:col-span-2' : '';
+
+                        return (
+                          <button
+                            key={letra}
+                            disabled={examFinished}
+                            onClick={() => handleSelectOption(q.id, letra)}
+                            className={`flex items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-all ${btnClass} ${spanClass} [&_img]:max-h-24 [&_img]:rounded-lg overflow-hidden cursor-pointer`}
+                          >
+                            <span className="font-bold shrink-0 text-sm">{letra})</span>
+                            <MathHtml 
+                              html={optContent}
+                              className="grow text-sm overflow-visible min-w-0" 
+                              inlineDisplay={true}
+                            />
+                            {isOfficialCorrect && <CheckCircle2 className="text-emerald-500 shrink-0" size={16} />}
+                            {isSelected && isWrong && !isExamMode && <XCircle className="text-rose-500 shrink-0" size={16} />}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                )}
-              </article>
-            );
-          })
+
+                  {/* Pie de Acciones de la Pregunta */}
+                  <div className="space-y-3 pt-2">
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-fd-border pt-4 no-print">
+                      <div className="flex items-center gap-2">
+                        {hasKey && !isExamMode ? (
+                          <>
+                            <button
+                              onClick={() => toggleSolution(q.id)}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-fd-border bg-fd-background px-3 py-1.5 text-xs font-semibold text-ink hover:bg-fd-muted transition-colors shadow-xs"
+                            >
+                              {isRevealed ? <EyeOff size={14} /> : <Eye size={14} />}
+                              {isRevealed ? 'Ocultar Clave' : 'Revelar Clave Oficial'}
+                            </button>
+                            {chosen && (
+                              <span className={`text-xs font-bold ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}`}>
+                                {isCorrect ? '¡Correcto! Clave ' + q.correct_key : 'Incorrecto. Clave oficial: ' + q.correct_key}
+                              </span>
+                            )}
+                          </>
+                        ) : !hasKey && !isExamMode ? (
+                          <div className="flex items-center gap-2 text-xs text-amber-700/90 font-medium">
+                            <span className="inline-flex items-center gap-1">
+                              <FileQuestion size={13} /> Pregunta propuesta (práctica libre)
+                            </span>
+                            {chosen && (
+                              <span className="text-fd-primary font-bold">
+                                • Marcaste {chosen}
+                              </span>
+                            )}
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <a
+                        href={q.web_url || '#'}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs text-fd-primary hover:underline inline-flex items-center gap-1 shrink-0"
+                      >
+                        Ver en Eduteka original ↗
+                      </a>
+                    </div>
+
+                    {/* Solución explicativa paso a paso */}
+                    {isRevealed && q.resolution_html && (
+                      <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-2 mt-2">
+                        <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block">
+                          Resolución Oficial Paso a Paso
+                        </span>
+                        <MathHtml 
+                          html={q.resolution_html}
+                          className="text-sm text-ink leading-relaxed" 
+                        />
+                      </div>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         )}
       </div>
 
@@ -641,7 +859,7 @@ export function ExamBankExplorer() {
           <button
             onClick={() => setPage(p => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="inline-flex items-center gap-1 rounded-xl border border-fd-border px-4 py-2 text-sm font-semibold text-ink disabled:opacity-40 hover:bg-fd-muted transition-colors"
+            className="inline-flex items-center gap-1 rounded-xl border border-fd-border px-4 py-2 text-sm font-semibold text-ink disabled:opacity-40 hover:bg-fd-muted transition-colors cursor-pointer"
           >
             <ChevronLeft size={16} /> Anterior
           </button>
@@ -651,7 +869,7 @@ export function ExamBankExplorer() {
           <button
             onClick={() => setPage(p => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="inline-flex items-center gap-1 rounded-xl border border-fd-border px-4 py-2 text-sm font-semibold text-ink disabled:opacity-40 hover:bg-fd-muted transition-colors"
+            className="inline-flex items-center gap-1 rounded-xl border border-fd-border px-4 py-2 text-sm font-semibold text-ink disabled:opacity-40 hover:bg-fd-muted transition-colors cursor-pointer"
           >
             Siguiente <ChevronRight size={16} />
           </button>
