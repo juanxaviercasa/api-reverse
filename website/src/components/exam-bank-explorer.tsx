@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { MathHtml } from '@/components/math-html';
 import { 
   BookOpen, 
   GraduationCap, 
@@ -544,9 +545,9 @@ export function ExamBankExplorer() {
                 </div>
 
                 {/* Enunciado con Fórmulas e Imágenes Locales */}
-                <div 
+                <MathHtml 
+                  html={q.question_html} 
                   className="text-base text-ink leading-relaxed font-sans overflow-x-auto py-2 [&_img]:max-h-64 [&_img]:mx-auto [&_img]:my-3 [&_img]:rounded-xl [&_img]:border [&_img]:border-fd-border [&_img]:bg-white [&_img]:p-2"
-                  dangerouslySetInnerHTML={{ __html: q.question_html }}
                 />
 
                 {/* Opciones A - E */}
@@ -575,9 +576,10 @@ export function ExamBankExplorer() {
                         className={`flex items-start gap-3 rounded-xl border p-3 text-left transition-all ${btnClass} [&_img]:max-h-24 [&_img]:rounded-lg`}
                       >
                         <span className="font-bold shrink-0">{letra})</span>
-                        <div 
-                          className="grow text-sm overflow-x-auto"
-                          dangerouslySetInnerHTML={{ __html: optContent }}
+                        <MathHtml 
+                          html={optContent}
+                          className="grow text-sm overflow-x-auto" 
+                          inlineDisplay={true}
                         />
                         {isOfficialCorrect && <CheckCircle2 className="text-emerald-500 shrink-0" size={16} />}
                         {isSelected && isWrong && !isExamMode && <XCircle className="text-rose-500 shrink-0" size={16} />}
@@ -621,9 +623,9 @@ export function ExamBankExplorer() {
                     <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block">
                       Resolución Oficial Paso a Paso
                     </span>
-                    <div 
-                      className="text-sm text-ink leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: q.resolution_html }}
+                    <MathHtml 
+                      html={q.resolution_html}
+                      className="text-sm text-ink leading-relaxed" 
                     />
                   </div>
                 )}

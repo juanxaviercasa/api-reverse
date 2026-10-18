@@ -1,4 +1,5 @@
 import './global.css';
+import 'katex/dist/katex.min.css';
 import { Inter, JetBrains_Mono, Fraunces } from 'next/font/google';
 import type { Metadata } from 'next';
 import { appName, appTagline, siteUrl } from '@/lib/shared';

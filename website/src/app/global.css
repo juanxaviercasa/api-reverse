@@ -825,3 +825,32 @@ body {
   border-bottom: 1px solid color-mix(in oklch, var(--color-ink) 10%, transparent);
   background: color-mix(in oklch, var(--color-ink) 4%, transparent);
 }
+
+/* KaTeX Mathematical and Chemical Formulas Polish */
+.katex {
+  font-size: 1.08em;
+  text-rendering: optimizeLegibility;
+}
+
+.katex-display {
+  margin: 0.6em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25em 0;
+}
+
+/* Inside option buttons, keep display math clean and inline-friendly */
+button .katex-display {
+  margin: 0.1em 0 !important;
+  display: inline-block !important;
+  text-align: left !important;
+}
+
+button .katex-display > .katex {
+  text-align: left !important;
+}
+
+/* Dark mode adjustments for KaTeX */
+.dark .katex {
+  color: inherit;
+}
