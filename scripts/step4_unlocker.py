@@ -68,6 +68,7 @@ def unlock_question(
     q_uuid: str,
     cookie: str,
     delay: float = 1.8,
+    is_teacher: bool = False,
 ) -> Optional[Dict[str, Any]]:
     headers = {
         "User-Agent": USER_AGENT,
@@ -110,8 +111,8 @@ def unlock_question(
                 correct_key = o.get("opt")
                 break
 
-    # Caso 2: Si aún no está desbloqueada, enviar respuesta "A" para forzar revelación
-    if not correct_key:
+    # Caso 2: Cuentas de estudiante -> enviar respuesta "A" para forzar revelación
+    if not correct_key and not is_teacher:
         time.sleep(0.5)
         ans_url = f"{BASE_URL}/preguntas/{q_uuid}/enviar-respuesta"
         try:
@@ -166,8 +167,14 @@ def run_unlocker():
         print("Configura EDUTEKA_COOKIE o EDUTEKA_TEACHER_COOKIE en tu archivo .env.")
         sys.exit(1)
 
-    is_teacher = "TEACHER" in os.environ or "profesor" in cookie.lower()
-    print(f"[OK] Sesión cargada ({'Modo Profesor' if is_teacher else 'Modo Estudiante'}).")
+    is_teacher = False
+    env_p = Path(".env")
+    if env_p.exists() and "EDUTEKA_TEACHER_COOKIE=" in env_p.read_text(encoding="utf-8"):
+        is_teacher = True
+    if os.environ.get("EDUTEKA_TEACHER_COOKIE"):
+        is_teacher = True
+
+    print(f"[OK] Sesión cargada ({'Modo Profesor (Lectura Directa)' if is_teacher else 'Modo Estudiante'}).")
 
     conn = sqlite3.connect(MASTER_DB)
     cur = conn.cursor()
@@ -205,7 +212,7 @@ def run_unlocker():
     try:
         for idx, row in enumerate(pending, 1):
             q_id, a_slug, u_slug, e_slug, q_text = row
-            result = unlock_question(session, q_id, cookie, delay=args.delay)
+            result = unlock_question(session, q_id, cookie, delay=args.delay, is_teacher=is_teacher)
 
             if result:
                 cur.execute(
