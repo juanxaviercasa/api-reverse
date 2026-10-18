@@ -127,3 +127,6 @@ macos/DerivedData/
 
 # keep the committed design prompt (the broad prompt*.md rule above would hide it)
 !design/PROMPT.md
+
+# Raw duplicate images folder (website/public/images is tracked for web display)
+dataset_eduteka/images/

@@ -111,7 +111,7 @@
     "exam_slug": "examen-unah-2024-i",
     "area_name": "FILOSOFIA",
     "question_type": "Directa",
-    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>En el circuito de la figura, la batería y los amperímetros tienen resistencia interna despreciable, siendo \\[i_1\\] , \\[i_2\\] e \\[i_3\\] las corrientes, en amperios ¿Cuál es la intensidad del amperímetro \\[A_3\\]?</p><p><img src=\"https://eduteka.pe/images/questions/img_filosofia_c3290df2.png\"/></p></div>",
+    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>En el circuito de la figura, la batería y los amperímetros tienen resistencia interna despreciable, siendo \\[i_1\\] , \\[i_2\\] e \\[i_3\\] las corrientes, en amperios ¿Cuál es la intensidad del amperímetro \\[A_3\\]?</p><p><img src=\"/images/questions/img_filosofia_c3290df2.png\"/></p></div>",
     "question_text": "En el circuito de la figura, la batería y los amperímetros tienen resistencia interna despreciable, siendo \\[i_1\\] , \\[i_2\\] e \\[i_3\\] las corrientes, en amperios ¿Cuál es la intensidad del amperímetro \\[A_3\\]?",
     "option_a": "<p>\\[2,50\\;\\Omega\\]</p>",
     "option_b": "<p>\\[1,50\\;\\Omega\\]</p>",

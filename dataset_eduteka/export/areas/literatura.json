@@ -1581,7 +1581,7 @@
     "exam_slug": "primer-examen-cepre-unsch-2025-ii",
     "area_name": "LITERATURA",
     "question_type": "Directa",
-    "question_html": "<div class=\"py-0 question-content\"><p>Complete la sucesión lógica con respecto a los personajes y hechos.</p><p><img src=\"https://eduteka.pe/images/questions/img_literatura_c5fff6f4.png\"/></p></div>",
+    "question_html": "<div class=\"py-0 question-content\"><p>Complete la sucesión lógica con respecto a los personajes y hechos.</p><p><img src=\"/images/questions/img_literatura_c5fff6f4.png\"/></p></div>",
     "question_text": "Complete la sucesión lógica con respecto a los personajes y hechos.",
     "option_a": "<p>Romeo mata a Teobaldo y se toma el veneno ante la presencia de Julieta.</p>",
     "option_b": "<p>Teobaldo mata a Benvolio y se toma el veneno ante la presencia de Rosalia.</p>",

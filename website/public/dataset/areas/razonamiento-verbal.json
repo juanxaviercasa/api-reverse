@@ -21321,7 +21321,7 @@
     "exam_slug": "unt-2024-i",
     "area_name": "RAZONAMIENTO VERBAL",
     "question_type": "Directa",
-    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>La figura muestra una arteria obstruida. Respecto a ello podemos afirmar que:</p><p><img src=\"https://eduteka.pe/images/questions/img_razonamiento_verbal_f2d2b6d5.png\"/></p></div>",
+    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>La figura muestra una arteria obstruida. Respecto a ello podemos afirmar que:</p><p><img src=\"/images/questions/img_razonamiento_verbal_f2d2b6d5.png\"/></p></div>",
     "question_text": "La figura muestra una arteria obstruida. Respecto a ello podemos afirmar que:",
     "option_a": "<p class=\"fs-4\">En la obstrucción, la arteria se dilata y se forma un globo. </p>",
     "option_b": "<p class=\"fs-4\">La presión fuera de la obstrucción es menor que la presión en la misma obstrucción. </p>",

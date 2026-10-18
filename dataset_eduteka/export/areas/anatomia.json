@@ -1812,7 +1812,7 @@
     "exam_slug": "segundo-examen-cepre-unsch-2025-ii",
     "area_name": "ANATOMIA",
     "question_type": "Directa",
-    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>La nefrona es la unidad anatómica y funcional de los riñones, presenta las siguientes partes: corpúsculo renal, TCP, asa de Henle y TCD. En la siguiente figura se muestra a una nefrona.</p><p> ¿Qué proceso de la formación de orina Indicarán la dirección de las flechas?</p><p><img src=\"https://eduteka.pe/images/questions/img_anatomia_c316bd00.png\"/></p></div>",
+    "question_html": "<div class=\"fs-4 question\" style=\"\"><p>La nefrona es la unidad anatómica y funcional de los riñones, presenta las siguientes partes: corpúsculo renal, TCP, asa de Henle y TCD. En la siguiente figura se muestra a una nefrona.</p><p> ¿Qué proceso de la formación de orina Indicarán la dirección de las flechas?</p><p><img src=\"/images/questions/img_anatomia_c316bd00.png\"/></p></div>",
     "question_text": "La nefrona es la unidad anatómica y funcional de los riñones, presenta las siguientes partes: corpúsculo renal, TCP, asa de Henle y TCD. En la siguiente figura se muestra a una nefrona. ¿Qué proceso de la formación de orina Indicarán la dirección de las flechas?",
     "option_a": "<p>Reabsorción tubular</p>",
     "option_b": "<p>Secreción tubular</p>",
